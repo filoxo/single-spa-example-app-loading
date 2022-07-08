@@ -8,7 +8,12 @@ The loader element itself is just HTML, a little bit of CSS for positioning, and
 Pico.css https://picocss.com/docs/loading.html
 
 You could take this same idea and use an image/SVG, pure css loader (such as https://github.com/loadingio/css-spinner).
-To implement your own, first ask yourself:
+A few questions to ask before implementing your own loader:
+
+1. does this need to be reusable (multiple copies) or reused (single instance)? 
+2. does the loader need to be placed where the app will mount to?
+3. can I defer loading non-critical parts of that application? See also https://single-spa.js.org/docs/faq/#code-splits
+4. does this application need a loading screen *before* being mounted, or should it display a loading indicator *after* it is mounted?
 */
 const loaderElement = document.getElementById("loader");
 
