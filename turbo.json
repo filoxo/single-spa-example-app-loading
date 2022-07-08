@@ -11,8 +11,9 @@
     "test": {
       "dependsOn": ["build"]
     },
-    "deploy": {
-      "dependsOn": ["build", "test", "lint"]
+    "//#postbuild": {
+      "dependsOn": ["build"],
+      "outputs": ["deploy/**"]
     },
     "start": {
       "cache": false

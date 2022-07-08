@@ -10,7 +10,9 @@
     "build": "turbo run build",
     "start": "turbo run start --parallel",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "deploy": "turbo run postbuild",
+    "postbuild": "rm -rf ./deploy && mkdir deploy && cp apps/*/dist/** ./deploy"
   },
   "devDependencies": {
     "prettier": "^2.5.1",

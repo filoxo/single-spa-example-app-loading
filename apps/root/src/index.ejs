@@ -41,7 +41,7 @@
   <!-- Add your organization's prod import map URL to this script's src  -->
   <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
 
-  <% if (isLocal) { %>
+<% if (isLocal) { %>
   <script type="systemjs-importmap">
     {
       "imports": {
@@ -52,7 +52,18 @@
       }
     }
   </script>
-  <% } %>
+<% } else { %>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@example/root-config": "/@example-root-config.js",
+        "@example/app1": "/@example-app1.js",
+        "@example/app2": "/@example-app2.js",
+        "@example/nav": "/@example-nav.js"
+      }
+    }
+  </script>
+<% } %>
   <script src="https://unpkg.com/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
   <script src="https://unpkg.com/systemjs@6.8.3/dist/system<% if (!isLocal) { %>.min<% } %>.js"></script>
   <style id="critical-css">
