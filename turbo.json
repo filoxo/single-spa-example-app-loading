@@ -1,0 +1,21 @@
+{
+  "npmClient": "npm",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["build"]
+    },
+    "deploy": {
+      "dependsOn": ["build", "test", "lint"]
+    },
+    "start": {
+      "cache": false
+    }
+  }
+}

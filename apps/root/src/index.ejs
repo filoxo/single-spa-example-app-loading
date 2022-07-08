@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>@example</title>
+  <!--
+    This CSP allows any SSL-enabled host and for arbitrary eval(), but you should limit these directives further to increase your app's security.
+    Learn more about CSP policies at https://content-security-policy.com/#directive
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; font-src 'self' data:; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">
+  <meta name="importmap-type" content="systemjs-importmap" />
+<% if(isLocal) { %>
+  <script type="systemjs-importmap" id="shared-dependencies-dev">
+    {
+      "imports": {
+        "single-spa": "https://unpkg.com/single-spa@5.9.4/lib/system/single-spa.dev.js",
+        "react": "https://unpkg.com/react@17.0.2/umd/react.development.js",
+        "react-dom": "https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"
+      }
+    }
+  </script>
+<% } else { %>
+  <script type="systemjs-importmap" id="shared-dependencies-prod">
+    {
+      "imports": {
+        "single-spa": "https://unpkg.com/single-spa@5.9.4/lib/system/single-spa.min.js",
+        "react": "https://unpkg.com/react@17.0.2/umd/react.production.min.js",
+        "react-dom": "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"
+      }
+    }
+  </script>
+  <link rel="preload" crossorigin="anonymous" href="https://unpkg.com/single-spa@5.9.4/lib/system/single-spa.min.js" as="script">
+  <link rel="preload" crossorigin="anonymous" href="https://unpkg.com/react@17.0.2/umd/react.production.min.js" as="script">
+  <link rel="preload" crossorigin="anonymous" href="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js" as="script">
+<% } %>
+  
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.0/css/pico<% if (!isLocal) { %>.min<% } %>.css">
+
+  <!-- Add your organization's prod import map URL to this script's src  -->
+  <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
+
+  <% if (isLocal) { %>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@example/root-config": "//localhost:9000/@example-root-config.js",
+        "@example/app1": "//localhost:9001/@example-app1.js",
+        "@example/app2": "//localhost:9002/@example-app2.js",
+        "@example/nav": "//localhost:9003/@example-nav.js"
+      }
+    }
+  </script>
+  <% } %>
+  <script src="https://unpkg.com/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+  <script src="https://unpkg.com/systemjs@6.8.3/dist/system<% if (!isLocal) { %>.min<% } %>.js"></script>
+  <style id="critical-css">
+    #loader {
+      background-color: rgba(0,0,0, 0.5);
+      text-align: center;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #loader:not([aria-busy="true"]) {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <noscript>
+    JavaScript is required to run this app.
+  </noscript>
+  <script>
+    System.import('@example/root-config');
+  </script>
+  <import-map-overrides-full></import-map-overrides-full>
+  <div>
+    <p id="loader" role="status" aria-live="polite" aria-busy="false">
+      <span>Loading...</span>
+    </p>
+  </div>
+</body>
+</html>

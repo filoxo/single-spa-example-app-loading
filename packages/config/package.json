@@ -1,0 +1,17 @@
+{
+  "name": "config",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "eslint-preset.js",
+    "@example-webpack.config.js"
+  ],
+  "dependencies": {
+    "eslint-config-next": "^12.0.8",
+    "eslint-config-prettier": "^8.3.0",
+    "filenamify": "^4.3.0",
+    "webpack-config-single-spa": "^5.2.0"
+  },
+  "prettier": {}
+}
