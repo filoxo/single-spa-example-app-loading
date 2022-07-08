@@ -14,17 +14,24 @@ const Link = (props) => {
 export default function Root() {
   return (
     <nav className="container">
-      <ul>
-        <li>
-          <strong>@example</strong>
-        </li>
-      </ul>
+      <h1 style={{ margin: 0 }}>@example</h1>
       <ul>
         <li>
           <Link href="/1">App 1</Link>
         </li>
         <li>
           <Link href="/2">App 2</Link>
+        </li>
+        <li>
+          <a href="https://github.com/filoxo/single-spa-example-app-loading">
+            GitHub repo
+            <span
+              aria-label="(external link)"
+              style={{ color: "var(--h1-color)", marginLeft: ".2rem" }}
+            >
+              ↗
+            </span>
+          </a>
         </li>
       </ul>
     </nav>
