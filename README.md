@@ -8,7 +8,7 @@ The purpose of this example is to show how to add a simple loader to the page. P
 
 ## Approach
 
-The loader is setup in the initial HTML. I created a wrapper function that will show the loader, load the requested application module, and then hide the loader once that completes.
+In the root-config, the [loader markup](https://github.com/filoxo/single-spa-example-app-loading/blob/main/apps/root/src/index.ejs#L94-L96) and [styles](https://github.com/filoxo/single-spa-example-app-loading/blob/main/apps/root/src/index.ejs#L70-L82) are defined. This makes the loader sharable across the entire site/page. root-config.js houses a [wrapper loading function](https://github.com/filoxo/single-spa-example-app-loading/blob/bcfda52ea0dd0bcaaff4200c86080a9b8d6c9665/apps/root/src/example-root-config.js#L5-L13) that will toggle the loader visibility, load the requested application module, and then hide the loader once that completes.
 
 ## Additional Notes
 
